@@ -7,17 +7,18 @@ class Race
   attr_accessor :cars
 
   def initialize
-		@cars = [@first = Car.new, @second = Car.new]
-		@first.speed = rand(100)
-		@second.speed = rand(100)
+		@cars = []
+		@cars << Car.new
+		@cars << Car.new
+		@cars.each { |car| car.speed = rand(100) }
 	end
 
 	def winner
-		@first.speed > @second.speed ? @first : @second
+		@cars[0].speed > @cars[1].speed ? @cars[0] : @cars[1]
 	end
 
 	def loser
-		winner == @first ? @second : @first
+		winner == @cars[0] ? @cars[1] : @cars[0]
 	end
 
 end
